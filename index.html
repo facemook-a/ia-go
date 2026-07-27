@@ -986,5 +986,52 @@ Respond naturally, helpfully, and with maximum accuracy. Auto-correct user typos
 
         renderMessages();
     </script>
+
+    <!-- ========================================== -->
+    <!--  كود حماية السورس كود وتجميد أدوات الفحص  -->
+    <!-- ========================================== -->
+    <script>
+        // 1. تعطيل زر الفأرة الأيمن (Right-Click)
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+        });
+
+        // 2. تعطيل اختصارات لوحة التحكم (F12, Ctrl+U, Ctrl+Shift+I/J/C)
+        document.addEventListener('keydown', function(e) {
+            if (
+                e.key === 'F12' || 
+                (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'J' || e.key === 'j' || e.key === 'C' || e.key === 'c')) || 
+                (e.ctrlKey && (e.key === 'U' || e.key === 'u' || e.key === 'S' || e.key === 's'))
+            ) {
+                e.preventDefault();
+            }
+        });
+
+        // 3. كشف وتجميد أدوات التفتيش (Anti-DevTools Freeze)
+        (function() {
+            setInterval(function() {
+                const startTime = performance.now();
+                
+                // نقطة توقف غير منتهية لتعطيل أدوات الفحص
+                debugger; 
+                
+                const endTime = performance.now();
+                
+                // إذا تجاوز الفرق الزمني 100 ملي ثانية يعني أن أدوات التفتيش مفتوحة
+                if (endTime - startTime > 100) {
+                    document.body.innerHTML = `
+                        <div style="background:#020617; color:#f8fafc; height:100vh; width:100vw; display:flex; align-items:center; justify-content:center; font-family:sans-serif; text-align:center; padding:20px; box-sizing:border-box;">
+                            <div style="background:#0f172a; border:1px solid #334155; padding:30px; border-radius:16px; max-width:400px; box-shadow:0 20px 25px -5px rgba(0,0,0,0.5);">
+                                <div style="font-size:40px; margin-bottom:10px;">⚠️</div>
+                                <h2 style="color:#ef4444; font-size:18px; margin-bottom:8px; font-weight:bold;">محاولة وصول غير مصرح بها</h2>
+                                <p style="color:#94a3b8; font-size:13px; line-height:1.5; margin-bottom:15px;">عذراً، تم حظر أدوات التفتيش لحماية السورس كود والبيانات الخاصة بالمنصة.</p>
+                                <button onclick="location.reload()" style="background:#f59e0b; color:#020617; border:none; padding:8px 16px; border-radius:8px; font-weight:bold; cursor:pointer; font-size:12px;">إعادة تحميل الصفحة</button>
+                            </div>
+                        </div>
+                    `;
+                }
+            }, 500);
+        })();
+    </script>
 </body>
 </html>
