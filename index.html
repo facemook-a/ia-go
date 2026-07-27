@@ -3,806 +3,987 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>بوابة الأرواح الذكية 🌌🇲🇦</title>
+    <title>Aymane AI Canvas™ - Universal Responsive System</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        body { 
-            background-color: #080d11; 
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            color: #e9edef;
+        * {
+            font-family: 'IBM Plex Sans Arabic', -apple-system, BlinkMacSystemFont, sans-serif;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
-        .chat-bg { 
-            background-color: #0b141a;
-            background-image: radial-gradient(circle at center, rgba(56, 189, 248, 0.08) 0%, transparent 80%),
-                              url("https://user-images.githubusercontent.com/15075759/28719144-86edd832-73b2-11e7-8f5d-d56e9a28b054.png");
-            background-repeat: repeat;
-            background-size: 400px;
-            background-blend-mode: overlay;
-        }
-        .message-shadow { box-shadow: 0 2px 8px rgba(0,0,0,0.4); }
-        ::-webkit-scrollbar { width: 5px; }
-        ::-webkit-scrollbar-track { background: transparent; }
-        ::-webkit-scrollbar-thumb { background: #2a3942; border-radius: 4px; }
+
+        .font-code { font-family: 'Fira Code', monospace; }
         
-        .soul-glow {
-            box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
-            animation: pulse-soul 3s infinite alternate;
-        }
-        @keyframes pulse-soul {
-            0% { box-shadow: 0 0 8px rgba(56, 189, 248, 0.4); }
-            100% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.7); }
-        }
-
-        .insta-gradient {
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-        }
-
-        .dot-bounce { animation: bounceDots 1.4s infinite ease-in-out both; }
-        .dot1 { animation-delay: -0.32s; }
-        .dot2 { animation-delay: -0.16s; }
-        @keyframes bounceDots {
-            0%, 80%, 100% { transform: scale(0.6); opacity: 0.3; }
-            40% { transform: scale(1); opacity: 1; }
-        }
-
-        .recording-pulse {
-            animation: pulse-red 1s infinite alternate;
-        }
-        @keyframes pulse-red {
-            0% { background-color: #ef4444; }
-            100% { background-color: #991b1b; }
-        }
-
-        .app-height {
-            height: 100vh;
+        html, body {
+            background-color: #020617;
+            color: #f8fafc;
+            width: 100%;
+            height: 100%;
             height: 100dvh;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
         }
 
-        .safe-bottom {
-            padding-bottom: max(0.625rem, env(safe-area-inset-bottom));
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.94);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        /* Custom Universal Scrollbar */
+        ::-webkit-scrollbar { width: 4px; height: 4px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        .insta-btn { 
+            background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+            box-shadow: 0 4px 12px rgba(220, 39, 67, 0.25);
+        }
+
+        @keyframes ratingGlow {
+            0%, 100% { box-shadow: 0 0 8px rgba(245, 158, 11, 0.3), inset 0 0 4px rgba(255, 255, 255, 0.2); }
+            50% { box-shadow: 0 0 16px rgba(251, 191, 36, 0.6), inset 0 0 6px rgba(255, 255, 255, 0.4); }
+        }
+        .hero-rating-btn {
+            animation: ratingGlow 2.5s infinite ease-in-out;
+        }
+
+        .gold-badge {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+        }
+
+        .chat-bubble-user {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            box-shadow: 0 4px 16px -4px rgba(37, 99, 235, 0.3);
+        }
+
+        .chat-bubble-ai {
+            background: #0f172a;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 16px -4px rgba(0, 0, 0, 0.4);
+        }
+
+        .code-box-container {
+            width: 100% !important;
+            max-width: 100% !important;
+            overflow: hidden !important;
+        }
+
+        .code-box {
+            direction: ltr !important;
+            text-align: left !important;
+            background: #020617;
+            border: 1px solid rgba(56, 189, 248, 0.25);
+            border-radius: 0.75rem;
+            width: 100% !important;
+            max-width: 100% !important;
+            overflow: hidden;
+        }
+
+        .formatted-text p { margin-bottom: 0.5rem; line-height: 1.6; word-break: break-word; }
+        .formatted-text ul { list-style-type: disc; margin-right: 1.25rem; margin-bottom: 0.5rem; }
+        .formatted-text ol { list-style-type: decimal; margin-right: 1.25rem; margin-bottom: 0.5rem; }
+
+        @keyframes pulseGlow {
+            0%, 100% { border-color: rgba(56, 189, 248, 0.4); box-shadow: 0 0 8px rgba(56, 189, 248, 0.2); }
+            50% { border-color: rgba(245, 158, 11, 0.8); box-shadow: 0 0 14px rgba(245, 158, 11, 0.3); }
+        }
+        .canvas-active { animation: pulseGlow 2s infinite ease-in-out; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in { animation: fadeIn 0.2s ease-out forwards; }
+        
+        .rating-btn { transition: all 0.2s ease; }
+        .rating-btn.active {
+            background: rgba(245, 158, 11, 0.2);
+            border-color: rgba(245, 158, 11, 0.8);
+            color: #fbbf24;
         }
     </style>
 </head>
-<body class="app-height w-full flex justify-center items-center p-0 md:p-4 select-none overflow-hidden">
+<body class="w-full h-full flex items-center justify-center p-0 md:p-3 overflow-hidden relative">
 
-    <div class="w-full max-w-2xl app-height md:h-[95vh] bg-[#111b21] flex flex-col rounded-none md:rounded-2xl overflow-hidden shadow-2xl border border-[#222d34] relative">
-        
-        <!-- Header -->
-        <div class="bg-[#1f2c34] px-3 py-2.5 flex items-center justify-between border-b border-[#222d34] z-10 shrink-0 shadow-md">
-            <div class="flex items-center gap-2.5 cursor-pointer hover:opacity-90 transition-opacity" onclick="openContactList()">
-                <div class="relative">
-                    <img id="current-avatar" class="w-10 h-10 rounded-full border-2 border-sky-400 object-cover soul-glow" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&q=80" alt="صورة الروح">
-                    <div class="absolute bottom-0 right-0 w-3 h-3 bg-sky-400 rounded-full border-2 border-[#1f2c34]"></div>
-                </div>
-                <div>
-                    <h1 id="current-chat-title" class="text-white font-bold text-sm leading-tight flex items-center gap-1">
-                        <span>مجلس أيمن والأرواح 🤝✨</span>
-                    </h1>
-                    <p id="current-chat-status" class="text-[11px] text-sky-300 font-medium transition-all">أيمن حاضر معك بذكائه وحبه...</p>
-                </div>
+    <!-- Toast Notification -->
+    <div id="toast" class="fixed top-4 z-50 transform -translate-y-20 opacity-0 transition-all duration-300 glass-panel text-amber-400 border border-amber-500/30 px-3.5 py-2 rounded-xl shadow-2xl text-xs font-semibold flex items-center gap-2 pointer-events-none max-w-[90vw]">
+        <i class="fa-solid fa-circle-check text-emerald-400 text-sm shrink-0"></i>
+        <span id="toast-msg" class="truncate">تم الإجراء بنجاح</span>
+    </div>
+
+    <!-- SUCCESS POPUP MODAL -->
+    <div id="feedback-success-modal" class="hidden fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md flex items-center justify-center p-4 animate-fade-in">
+        <div class="glass-panel w-full max-w-xs sm:max-w-sm bg-slate-950 border border-amber-500/30 rounded-2xl p-5 text-center space-y-4 shadow-2xl relative">
+            <div class="w-12 h-12 bg-amber-500 rounded-full flex items-center justify-center mx-auto shadow-lg text-slate-950 text-lg font-black gold-badge">
+                <i class="fa-solid fa-check text-slate-950"></i>
             </div>
+            <div class="space-y-1">
+                <h3 class="text-slate-100 font-bold text-sm">تم إرسال تقييمك بنجاح!</h3>
+                <p class="text-slate-400 text-xs">شكراً لك على تقييمك لمطوّر المنصة <span class="text-amber-400 font-bold">AYMANE</span>.</p>
+            </div>
+            <button onclick="closeSuccessModal()" class="w-full bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold py-2.5 rounded-xl border border-slate-700 transition-all">
+                حسناً، إغلاق
+            </button>
+        </div>
+    </div>
 
-            <!-- Action Tools Header Buttons -->
-            <div class="flex items-center gap-1.5 text-[#aebac1]">
-                <!-- Instagram Direct Link Button -->
-                <a href="https://www.instagram.com/aymane_b5x?igsh=MTlobnprYXQ0NnFjeA==" target="_blank" class="insta-gradient hover:opacity-90 text-white px-2.5 py-1 rounded-lg text-xs font-bold transition-all flex items-center gap-1 shadow-md hover:scale-105 active:scale-95" title="تواصل معايا فـ إنستغرام">
-                    <i class="fa-brands fa-instagram text-sm"></i>
-                    <span class="hidden sm:inline">تواصل معايا</span>
+    <!-- MODAL: DEV INFO & FEEDBACK FORM -->
+    <div id="dev-modal" class="hidden fixed inset-0 z-50 bg-[#020617]/90 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 animate-fade-in">
+        <div class="glass-panel w-full max-w-md bg-slate-950 border border-slate-800 rounded-2xl p-4 sm:p-5 shadow-2xl space-y-3.5 relative max-h-[92vh] overflow-y-auto">
+            
+            <button onclick="closeDevModal()" class="absolute top-3.5 left-3.5 bg-slate-900 hover:bg-slate-800 text-slate-400 hover:text-white w-7 h-7 rounded-full flex items-center justify-center border border-slate-800 transition-all">
+                <i class="fa-solid fa-xmark text-xs"></i>
+            </button>
+
+            <!-- Dev Profile Header -->
+            <div class="flex items-center justify-between border-b border-slate-800/80 pb-3">
+                <div class="flex items-center gap-2.5">
+                    <div class="relative shrink-0">
+                        <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=120&q=80" class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl object-cover border-2 border-amber-500 shadow-md">
+                        <span class="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-amber-500 rounded-full flex items-center justify-center text-[7px] text-slate-950 font-black gold-badge">
+                            <i class="fa-solid fa-check"></i>
+                        </span>
+                    </div>
+                    <div>
+                        <div class="flex items-center gap-1.5">
+                            <h2 class="text-slate-100 font-bold text-sm sm:text-base">AYMANE</h2>
+                            <span class="w-3.5 h-3.5 rounded-full flex items-center justify-center text-[7px] text-slate-950 font-black gold-badge">
+                                <i class="fa-solid fa-check"></i>
+                            </span>
+                        </div>
+                        <p class="text-[10px] text-amber-400 font-medium">Developer & Creator</p>
+                    </div>
+                </div>
+
+                <a href="https://www.instagram.com/aymane_b5x?igsh=MTlobnprYXQ0NnFjeA==" target="_blank" rel="noopener" class="insta-btn text-white px-2.5 py-1.5 rounded-xl text-[11px] font-bold flex items-center gap-1.5 shrink-0 hover:opacity-90 transition-all ml-7 sm:ml-0">
+                    <i class="fa-brands fa-instagram text-xs"></i>
+                    <span>إنستغرام</span>
                 </a>
+            </div>
 
-                <button onclick="triggerPanicSOS()" class="px-2 py-1 bg-red-900/60 hover:bg-red-800 border border-red-500/40 text-red-200 rounded-lg text-xs font-bold transition-all flex items-center gap-1 animate-pulse" title="عتقني أ أيمن!">
-                    <i class="fa-solid fa-triangle-exclamation"></i>
-                    <span class="hidden sm:inline">عتقني!</span>
-                </button>
+            <!-- Developer Intro Note -->
+            <div class="bg-slate-900/80 p-2.5 sm:p-3 rounded-xl border border-amber-500/20 space-y-1">
+                <div class="text-xs font-bold text-amber-400 flex items-center gap-1.5">
+                    <i class="fa-solid fa-star text-amber-400"></i> تقييم المنصة:
+                </div>
+                <p class="text-[11px] sm:text-xs text-slate-300 leading-relaxed">
+                    رأيك يسهم في تطوير منصة <strong class="text-amber-400">Aymane AI Canvas™</strong>. شاركنا انطباعك بلمسة واحدة.
+                </p>
+            </div>
 
-                <button onclick="toggleMemoryModal()" class="p-2 hover:bg-[#2a3942] rounded-full transition-all text-sky-400" title="ذاكرة أيمن">
-                    <i class="fa-solid fa-brain text-base"></i>
-                </button>
+            <!-- Rating & Feedback Form -->
+            <div class="space-y-2.5 pt-1">
+                <div class="bg-slate-900/90 p-2.5 rounded-xl border border-slate-800 space-y-2">
+                    <div class="flex items-center justify-between text-xs text-slate-300 px-1 font-medium">
+                        <span>اختر التقييم:</span>
+                        <span id="rating-label-text" class="text-amber-400 font-bold text-[11px]">غير محدد</span>
+                    </div>
+                    <div class="grid grid-cols-5 gap-1" id="rating-buttons-group">
+                        <button type="button" onclick="selectRatingButton(1)" class="rating-btn bg-slate-950 hover:bg-amber-500/10 border border-slate-800 rounded-lg py-1.5 flex flex-col items-center gap-0.5 text-slate-400">
+                            <i class="fa-solid fa-star text-[10px]"></i>
+                            <span class="text-[10px] font-bold">1</span>
+                        </button>
+                        <button type="button" onclick="selectRatingButton(2)" class="rating-btn bg-slate-950 hover:bg-amber-500/10 border border-slate-800 rounded-lg py-1.5 flex flex-col items-center gap-0.5 text-slate-400">
+                            <i class="fa-solid fa-star text-[10px]"></i>
+                            <span class="text-[10px] font-bold">2</span>
+                        </button>
+                        <button type="button" onclick="selectRatingButton(3)" class="rating-btn bg-slate-950 hover:bg-amber-500/10 border border-slate-800 rounded-lg py-1.5 flex flex-col items-center gap-0.5 text-slate-400">
+                            <i class="fa-solid fa-star text-[10px]"></i>
+                            <span class="text-[10px] font-bold">3</span>
+                        </button>
+                        <button type="button" onclick="selectRatingButton(4)" class="rating-btn bg-slate-950 hover:bg-amber-500/10 border border-slate-800 rounded-lg py-1.5 flex flex-col items-center gap-0.5 text-slate-400">
+                            <i class="fa-solid fa-star text-[10px]"></i>
+                            <span class="text-[10px] font-bold">4</span>
+                        </button>
+                        <button type="button" onclick="selectRatingButton(5)" class="rating-btn bg-slate-950 hover:bg-amber-500/10 border border-slate-800 rounded-lg py-1.5 flex flex-col items-center gap-0.5 text-slate-400">
+                            <i class="fa-solid fa-star text-[10px]"></i>
+                            <span class="text-[10px] font-bold">5</span>
+                        </button>
+                    </div>
+                </div>
 
-                <button onclick="clearCurrentChatHistory()" class="p-2 hover:bg-[#2a3942] rounded-full transition-all text-red-400" title="مسح المحادثة">
-                    <i class="fa-solid fa-trash-can text-base"></i>
-                </button>
+                <div class="space-y-1.5">
+                    <input id="feedback-name" type="text" placeholder="الاسم الكريم (اختياري)..." class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-amber-500/60 transition-all">
+                    <input id="feedback-contact" type="text" placeholder="البريد أو الهاتف (اختياري)..." class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-amber-500/60 transition-all">
+                    <textarea id="feedback-msg" rows="2.5" placeholder="ملاحظتك أو اقتراحك..." class="w-full bg-slate-900 border border-slate-800 rounded-xl px-3 py-2 text-xs text-slate-100 placeholder-slate-500 focus:outline-none focus:border-amber-500/60 resize-none transition-all"></textarea>
+                </div>
 
-                <button onclick="openContactList()" class="p-2 hover:bg-[#2a3942] rounded-full transition-all hover:text-white" title="دعوة الأرواح والشخصيات">
-                    <i class="fa-solid fa-users text-base text-sky-400"></i>
+                <button onclick="sendFeedbackToTelegram()" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-2.5 rounded-xl text-xs transition-all flex items-center justify-center gap-2 shadow-md active:scale-95">
+                    <i class="fa-paper-plane fa-solid text-xs"></i>
+                    <span>إرسال التقييم</span>
                 </button>
             </div>
         </div>
+    </div>
 
-        <!-- Memory Modal -->
-        <div id="memory-modal" class="hidden absolute inset-0 bg-[#111b21]/95 backdrop-blur-md z-40 flex flex-col p-5 transition-all">
-            <div class="flex justify-between items-center mb-4 border-b border-[#222d34] pb-3">
-                <div class="flex items-center gap-2">
-                    <i class="fa-solid fa-brain text-sky-400 text-xl"></i>
-                    <h2 class="text-white font-bold text-lg">ذاكرة أيمن الخاصة بك 🧠❤️</h2>
-                </div>
-                <button onclick="toggleMemoryModal()" class="text-[#aebac1] hover:text-white p-2 rounded-full hover:bg-[#202c33] text-lg">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-            <p class="text-xs text-[#8696a0] mb-4">التفاصيل التي يحتفظ بها أيمن في قلبه وذكائه لمرافقتك:</p>
-            
-            <div class="flex-1 bg-[#182229] p-4 rounded-xl border border-[#222d34] overflow-y-auto font-mono text-sm text-sky-200 leading-relaxed" id="memory-content">
-                جاري استحضار الذكريات...
-            </div>
-
-            <div class="mt-4 flex gap-2">
-                <button onclick="clearMemory()" class="flex-1 bg-red-900/40 hover:bg-red-800/60 text-red-200 border border-red-500/30 py-2.5 rounded-xl font-bold text-xs transition-all flex items-center justify-center gap-2">
-                    <i class="fa-solid fa-trash"></i> مسح الذاكرة
-                </button>
-            </div>
-        </div>
-
-        <!-- Contacts Drawer / Modal -->
-        <div id="contacts-modal" class="hidden absolute inset-0 bg-[#111b21] z-30 flex flex-col p-4 transition-all duration-300">
-            <div class="flex justify-between items-center mb-4 border-b border-[#222d34] pb-3">
-                <div class="flex items-center gap-2">
-                    <i class="fa-solid fa-heart text-sky-400 text-xl"></i>
-                    <h2 class="text-white font-bold text-lg">اختر مع من تتحدث</h2>
-                </div>
-                <button onclick="closeContactList()" class="text-[#aebac1] hover:text-white p-2 rounded-full hover:bg-[#202c33] text-lg">
-                    <i class="fa-solid fa-xmark"></i>
-                </button>
-            </div>
-            
-            <div class="space-y-2.5 overflow-y-auto flex-1 pr-1">
-                <div onclick="switchChat('aymane')" class="flex items-center gap-3.5 p-3.5 bg-[#1f2c34] hover:bg-[#2a3942] rounded-xl cursor-pointer transition-all border-r-4 border-sky-400 shadow-sm">
-                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&q=80" class="w-12 h-12 rounded-full object-cover border border-sky-400">
-                    <div class="flex-1">
-                        <div class="flex justify-between items-center">
-                            <h3 class="text-white font-bold text-sm">أيمن (صديقك العبقري والمحب) ❤️</h3>
-                            <span class="text-[10px] text-sky-300 font-bold bg-sky-950 px-2 py-0.5 rounded-full border border-sky-500/30">مستشار رقمي</span>
-                        </div>
-                        <p class="text-xs text-[#8696a0] mt-0.5">جاهز يساعدك فـ أي حاجة، يفهمك، ويسمع ليك فـ أي وقت...</p>
-                    </div>
-                </div>
-
-                <div onclick="switchChat('group')" class="flex items-center gap-3.5 p-3.5 bg-[#1f2c34] hover:bg-[#2a3942] rounded-xl cursor-pointer transition-all border-r-4 border-purple-500 shadow-sm">
-                    <div class="w-12 h-12 rounded-full bg-gradient-to-tr from-sky-600 to-purple-800 flex items-center justify-center text-white text-xl font-bold shadow-lg">
-                        <i class="fa-solid fa-comments"></i>
-                    </div>
-                    <div class="flex-1">
-                        <div class="flex justify-between items-center">
-                            <h3 class="text-white font-semibold text-sm">المجلس الكامل (أيمن + الأرواح)</h3>
-                            <span class="text-[10px] text-purple-300 font-bold bg-purple-900/40 px-2 py-0.5 rounded-full border border-purple-500/30">جلسة عامة</span>
-                        </div>
-                        <p class="text-xs text-[#8696a0] mt-0.5">أيمن يوجه الحوار ويستحضر روح حسني وباطما والحكيم...</p>
-                    </div>
-                </div>
-
-                <div class="pt-2 pb-1">
-                    <span class="text-xs font-bold text-sky-400 uppercase tracking-wider px-2">شات خاص مع الشخصيات</span>
-                </div>
-
-                <div id="contacts-container" class="space-y-2"></div>
-
-                <!-- 🌟 بطاقة تطوير شخصية جديدة ذكية 🌟 -->
-                <div class="mt-4 p-4 rounded-xl bg-gradient-to-br from-[#1a232a] via-[#162938] to-[#0f1d2a] border border-amber-500/30 shadow-xl relative overflow-hidden">
-                    <div class="flex items-start gap-3">
-                        <div class="w-10 h-10 rounded-full bg-amber-500/20 border border-amber-400/40 flex items-center justify-center text-amber-400 shrink-0 text-lg shadow-inner">
-                            <i class="fa-solid fa-[#fa-wand-magic-sparkles] fa-wand-magic-sparkles"></i>
-                        </div>
-                        <div class="flex-1">
-                            <h4 class="text-amber-300 font-bold text-sm flex items-center gap-1.5">
-                                <span>عندك فكرة شخصية جديدة؟ 🧠⚡</span>
-                            </h4>
-                            <p class="text-xs text-[#aebac1] mt-1 leading-relaxed">
-                                كنقلب على شخصيات تاريخية، أدبية، أو أسطورية جديدة نزدوها فـ هاد الموقع! إذا عندك فكرة بغيتي نبنيو ليها <strong class="text-amber-200">دماغها الذكي (AI Prompt)</strong>، تواصل معايا ونتعاونو نبرمجوها!
-                            </p>
-                            <a href="https://www.instagram.com/aymane_b5x?igsh=MTlobnprYXQ0NnFjeA==" target="_blank" class="mt-3 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg text-xs font-bold text-white insta-gradient hover:scale-105 active:scale-95 transition-all shadow-md">
-                                <i class="fa-brands fa-instagram text-sm"></i>
-                                <span>صيفط ليا فـ أنستغرام فكرتك</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-
-        <!-- Chat Area -->
-        <div id="chat-box" class="flex-1 min-h-0 overflow-y-auto p-4 space-y-3 chat-bg flex flex-col">
-            <div class="flex justify-center my-2">
-                <span class="bg-[#182229]/90 backdrop-blur-md text-sky-200 text-[11px] px-3.5 py-1.5 rounded-lg border border-sky-500/20 shadow-sm flex items-center gap-1.5">
-                    <i class="fa-solid fa-sparkles text-sky-400 text-[10px]"></i>
-                    أيمن هنا معك ديما بذكائه وفهمه الشامل وعاطفته الصادقة 🇲🇦 ✨
+    <!-- CODE CANVAS MODAL -->
+    <div id="code-canvas-modal" class="hidden fixed inset-0 z-50 bg-[#020617] flex flex-col dir-ltr animate-fade-in">
+        <div class="bg-slate-900 border-b border-slate-800 px-3 sm:px-4 py-2 flex items-center justify-between shadow-xl shrink-0">
+            <div class="flex items-center gap-2 min-w-0">
+                <span class="w-3 h-3 rounded-full bg-rose-500 cursor-pointer shrink-0" onclick="closeCodeCanvas()"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-500 shrink-0"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-500 shrink-0"></span>
+                <span class="font-code text-[11px] sm:text-xs font-bold text-amber-400 uppercase truncate mr-1" id="canvas-lang-text">LIVE WORKSPACE</span>
+                <span id="canvas-status-badge" class="bg-amber-500/10 text-amber-400 border border-amber-500/30 text-[9px] px-1.5 py-0.5 rounded-full font-bold flex items-center gap-1 animate-pulse shrink-0">
+                    <i class="fa-solid fa-spinner fa-spin"></i>
                 </span>
             </div>
-            <div id="messages-list" class="space-y-3 flex flex-col"></div>
-        </div>
 
-        <!-- Typing Indicator -->
-        <div id="typing-indicator" class="hidden px-4 py-2 bg-[#111b21] flex items-center gap-3 shrink-0 border-t border-[#222d34]/50">
-            <img id="typing-avatar" src="" class="w-6 h-6 rounded-full object-cover border border-sky-400">
-            <div class="bg-[#1f2c34] px-3.5 py-2 rounded-2xl rounded-tr-none flex items-center gap-2 border border-sky-500/30">
-                <span id="typing-text" class="text-xs text-sky-300 font-medium"></span>
-                <div class="flex items-center gap-1">
-                    <span class="w-1.5 h-1.5 bg-sky-400 rounded-full dot-bounce dot1"></span>
-                    <span class="w-1.5 h-1.5 bg-sky-400 rounded-full dot-bounce dot2"></span>
-                    <span class="w-1.5 h-1.5 bg-sky-400 rounded-full dot-bounce"></span>
-                </div>
+            <div class="flex items-center gap-1.5 shrink-0">
+                <button onclick="copyCanvasCode()" class="bg-slate-800 hover:bg-slate-700 text-slate-200 px-2.5 py-1 rounded-lg text-[11px] font-medium border border-slate-700 transition-all">
+                    <span id="canvas-copy-text">نسخ</span>
+                </button>
+                <button onclick="closeCodeCanvas()" class="bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/20 w-7 h-7 rounded-lg flex items-center justify-center transition-all">
+                    <i class="fa-solid fa-xmark text-xs"></i>
+                </button>
             </div>
         </div>
 
-        <!-- Quick AI Modes Toolbar -->
-        <div class="bg-[#182229] px-3 py-1.5 flex items-center gap-2 overflow-x-auto border-t border-[#222d34] shrink-0 text-xs text-[#8696a0] no-scrollbar">
-            <span class="text-[10px] text-sky-400 font-bold shrink-0">أدوات أيمن:</span>
-            <button onclick="startQuizMode()" class="bg-purple-900/40 hover:bg-purple-800/60 text-purple-300 px-2.5 py-1 rounded-full border border-purple-500/40 shrink-0 font-bold flex items-center gap-1">
-                <i class="fa-solid fa-graduation-cap"></i> اختبرني 🎯
-            </button>
-            <button onclick="startChefMode()" class="bg-amber-900/40 hover:bg-amber-800/60 text-amber-300 px-2.5 py-1 rounded-full border border-amber-500/40 shrink-0 font-bold flex items-center gap-1">
-                <i class="fa-solid fa-utensils"></i> شنو نطيب؟ 🍲
-            </button>
-            <button onclick="insertMention('@أيمن ')" class="bg-sky-900/40 hover:bg-sky-800/60 text-sky-300 px-2.5 py-1 rounded-full border border-sky-500/40 shrink-0 font-bold">@أيمن 🤝</button>
-            <button onclick="insertMention('@حسني ')" class="bg-[#1f2c34] text-[#f43f5e] px-2.5 py-1 rounded-full border border-[#f43f5e]/30 shrink-0">@حسني 🎶</button>
-            <button onclick="insertMention('@باطما ')" class="bg-[#1f2c34] text-[#fbbf24] px-2.5 py-1 rounded-full border border-[#fbbf24]/30 shrink-0">@باطما 🎸</button>
-            <button onclick="insertMention('@حكيم ')" class="bg-[#1f2c34] text-[#a855f7] px-2.5 py-1 rounded-full border border-[#a855f7]/30 shrink-0">@حكيم ✨</button>
+        <div class="flex-1 p-3 sm:p-4 overflow-auto bg-[#020617]">
+            <pre class="m-0"><code id="canvas-code-content" class="font-code text-xs sm:text-sm text-emerald-300 leading-relaxed whitespace-pre block select-text"></code></pre>
         </div>
 
-        <!-- Input Bar -->
-        <div class="bg-[#1f2c34] p-2.5 safe-bottom flex items-center gap-2 border-t border-[#222d34] shrink-0">
-            <button onclick="insertEmoji('❤️')" class="text-[#aebac1] hover:text-sky-400 p-1.5 transition-colors">
-                <i class="fa-regular fa-face-smile text-xl"></i>
+        <div class="bg-slate-950 border-t border-slate-800 px-3 py-1.5 flex items-center justify-between text-[10px] text-slate-400 dir-rtl shrink-0">
+            <span><i class="fa-solid fa-code text-sky-400 ml-1"></i> بيئة تطوير موحدة</span>
+            <span id="canvas-char-count">0 حرف</span>
+        </div>
+    </div>
+
+    <!-- CODE PREVIEW MODAL -->
+    <div id="code-preview-modal" class="hidden fixed inset-0 z-50 bg-[#030712] flex flex-col animate-fade-in">
+        <div class="bg-slate-900 border-b border-slate-800 px-3 py-2 flex items-center justify-between shrink-0">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-eye text-emerald-400 text-xs"></i>
+                <span class="text-xs font-bold text-slate-200">معاينة تفاعلية</span>
+            </div>
+            <button onclick="closeCodePreview()" class="bg-rose-500/10 text-rose-400 border border-rose-500/20 w-7 h-7 rounded-lg flex items-center justify-center transition-all">
+                <i class="fa-solid fa-xmark text-xs"></i>
+            </button>
+        </div>
+        <div class="flex-1 w-full h-full bg-white">
+            <iframe id="preview-frame" class="w-full h-full border-none"></iframe>
+        </div>
+    </div>
+
+    <!-- Main App Container - Perfect Universal Sizing -->
+    <div class="w-full max-w-5xl h-full md:h-[94vh] glass-panel rounded-none md:rounded-2xl shadow-2xl flex flex-col overflow-hidden relative border-0 md:border md:border-slate-800/80">
+
+        <!-- Header -->
+        <header class="px-2.5 sm:px-4 py-2 sm:py-2.5 bg-slate-950/95 border-b border-slate-800/80 flex items-center justify-between shrink-0 z-20 gap-1.5">
+            <!-- Left Header: Identity -->
+            <div class="flex items-center gap-2 min-w-0 flex-1">
+                <div class="relative shrink-0 cursor-pointer" onclick="openDevModal()">
+                    <img id="current-avatar" src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=120&q=80" class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl object-cover border border-amber-500/80 shadow-md">
+                    <span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-amber-500 rounded-full flex items-center justify-center text-[6px] text-slate-950 font-black gold-badge">
+                        <i class="fa-solid fa-check"></i>
+                    </span>
+                </div>
+                <div class="min-w-0 flex-1">
+                    <div class="flex items-center gap-1 truncate">
+                        <h1 class="text-slate-100 font-extrabold text-xs sm:text-sm tracking-wide truncate">AYMANE</h1>
+                        <span class="w-3 h-3 shrink-0 rounded-full flex items-center justify-center text-[6px] text-slate-950 font-black gold-badge">
+                            <i class="fa-solid fa-check"></i>
+                        </span>
+                        <span class="text-[8px] bg-blue-500/20 text-blue-400 border border-blue-400/30 px-1 py-0.2 rounded font-extrabold uppercase shrink-0">PRO</span>
+                    </div>
+                    
+                    <p class="text-[9px] sm:text-[10px] text-slate-400 font-medium flex items-center gap-1 truncate">
+                        <span class="relative flex h-1.5 w-1.5 shrink-0">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500"></span>
+                        </span>
+                        <span class="text-slate-300 font-semibold truncate">AI Canvas v4.0</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right Header: Rating Button & Menu -->
+            <div class="flex items-center gap-1.5 shrink-0">
+                <!-- Golden Glow Rating Button -->
+                <button onclick="openDevModal()" class="hero-rating-btn bg-gradient-to-r from-amber-400 via-amber-500 to-amber-400 text-slate-950 font-extrabold px-2 sm:px-3 py-1.5 rounded-xl text-[10px] sm:text-xs flex items-center gap-1 transition-all active:scale-95 border border-amber-300/60 shrink-0 cursor-pointer">
+                    <i class="fa-solid fa-star text-slate-950 text-[10px]"></i>
+                    <span class="tracking-tight whitespace-nowrap">قيم المنصة ⭐</span>
+                </button>
+
+                <!-- Menu Dropdown Trigger -->
+                <div class="relative shrink-0">
+                    <button onclick="toggleMenu()" class="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center bg-slate-900/80 hover:bg-slate-800 text-slate-300 rounded-xl transition-all border border-slate-800">
+                        <i class="fa-solid fa-ellipsis-vertical text-xs sm:text-sm"></i>
+                    </button>
+
+                    <div id="dropdown-menu" class="hidden absolute left-0 mt-2 w-40 glass-panel bg-slate-950/95 border border-slate-800 rounded-xl shadow-2xl p-1 z-30 animate-fade-in space-y-0.5">
+                        <button onclick="toggleSearch(); toggleMenu();" class="w-full text-right px-2.5 py-1.5 text-xs text-slate-300 hover:bg-slate-800/80 rounded-lg transition-colors flex items-center gap-2">
+                            <i class="fa-solid fa-magnifying-glass text-sky-400"></i> بحث
+                        </button>
+                        <button onclick="exportChatToFile(); toggleMenu();" class="w-full text-right px-2.5 py-1.5 text-xs text-slate-300 hover:bg-slate-800/80 rounded-lg transition-colors flex items-center gap-2">
+                            <i class="fa-solid fa-file-arrow-down text-emerald-400"></i> تصدير
+                        </button>
+                        <button onclick="clearChat(); toggleMenu();" class="w-full text-right px-2.5 py-1.5 text-xs text-rose-400 hover:bg-rose-500/10 rounded-lg transition-colors flex items-center gap-2">
+                            <i class="fa-solid fa-trash-can"></i> مسح
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Search Bar -->
+        <div id="search-bar" class="hidden bg-slate-950/90 px-3 py-1.5 border-b border-slate-800 flex items-center gap-2 shrink-0 animate-fade-in">
+            <i class="fa-solid fa-magnifying-glass text-slate-500 text-xs"></i>
+            <input id="search-input" oninput="filterMessages()" type="text" placeholder="ابحث عن نص..." class="w-full bg-transparent text-slate-200 text-xs focus:outline-none placeholder-slate-500">
+            <button onclick="toggleSearch()" class="text-slate-400 text-xs">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <!-- Main Chat Container -->
+        <div id="chat-box" class="flex-1 min-h-0 overflow-y-auto p-2.5 sm:p-4 space-y-3 w-full">
+            <div id="messages-list" class="space-y-3 flex flex-col w-full max-w-full"></div>
+        </div>
+
+        <!-- Fast Shortcut Suggestions Bar -->
+        <div class="bg-slate-950/90 px-2.5 py-1.5 flex items-center gap-1.5 border-t border-slate-800/80 overflow-x-auto no-scrollbar shrink-0 w-full">
+            <button onclick="quickPrompt('اكتب لي كود تطبيق كاملاً لـ: ')" class="bg-amber-500/10 hover:bg-amber-500/20 text-amber-400 border border-amber-500/20 px-2.5 py-1 rounded-lg text-[10px] font-semibold shrink-0 transition-all flex items-center gap-1">
+                <i class="fa-solid fa-laptop-code"></i> أكواد وبرمجة
+            </button>
+            <button onclick="quickPrompt('تفضل بشرح تفصيلي وشامل لـ: ')" class="bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/20 px-2.5 py-1 rounded-lg text-[10px] font-semibold shrink-0 transition-all flex items-center gap-1">
+                <i class="fa-solid fa-brain"></i> تحليل وشرح
+            </button>
+            <button onclick="quickPrompt('أرجو منك تحليل الثغرات الأمنية والحلول لـ: ')" class="bg-rose-500/10 hover:bg-rose-500/20 text-rose-400 border border-rose-500/20 px-2.5 py-1 rounded-lg text-[10px] font-semibold shrink-0 transition-all flex items-center gap-1">
+                <i class="fa-solid fa-shield-halved"></i> أمن معلومات
+            </button>
+        </div>
+
+        <!-- Input Box Area -->
+        <div class="p-2 sm:p-3 bg-slate-950 border-t border-slate-800/80 flex items-center gap-1.5 sm:gap-2 shrink-0">
+            <button id="mic-btn" onclick="toggleVoiceRecording()" class="w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-slate-400 hover:text-amber-400 hover:bg-slate-900 rounded-xl transition-all shrink-0" title="تسجيل صوتي">
+                <i class="fa-solid fa-microphone text-xs sm:text-sm"></i>
             </button>
 
-            <!-- Voice Recording Mic Button -->
-            <button id="mic-btn" onclick="toggleVoiceRecording()" class="text-[#aebac1] hover:text-sky-400 p-2 transition-all rounded-full" title="تحدث بالصوت">
-                <i class="fa-solid fa-microphone text-xl"></i>
-            </button>
+            <input id="user-input" type="text" placeholder="اكتب سؤالك أو الكود..." class="flex-1 bg-slate-900/90 text-slate-100 placeholder-slate-500 px-3 py-2 rounded-xl border border-slate-800 focus:outline-none focus:border-amber-500/60 text-xs sm:text-sm transition-all shadow-inner min-w-0">
 
-            <input id="user-input" type="text" placeholder="اكتب لأيمن.. أو انقر على المايك للهدرة بالصوت..." class="flex-1 bg-[#2a3942] text-white placeholder-[#8696a0] px-4 py-2.5 rounded-xl focus:outline-none focus:ring-1 focus:ring-sky-500 text-sm transition-all">
-            
-            <button id="send-btn" class="bg-sky-600 hover:bg-sky-500 active:scale-95 text-white w-10 h-10 rounded-xl flex items-center justify-center transition-all shrink-0 shadow-lg">
-                <i class="fa-solid fa-paper-plane text-sm"></i>
+            <button id="action-btn" onclick="handleAction()" class="bg-amber-500 hover:bg-amber-400 active:scale-95 text-slate-950 font-bold px-3 h-8 sm:h-9 rounded-xl flex items-center justify-center transition-all shadow-md shrink-0 gap-1 text-xs">
+                <i id="action-icon" class="fa-solid fa-paper-plane text-xs"></i>
+                <span id="action-text" class="hidden sm:inline">إرسال</span>
             </button>
         </div>
 
     </div>
 
     <script>
-        const TELEGRAM_BOT_TOKEN = "8809481115:AAFsRq2rSa9moGRjHxjEWo8ckXMIYrqouSs";
+        const OPENROUTER_API_KEY = "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";
+        
+        // TELEGRAM BOT CREDENTIALS
+        const TELEGRAM_BOT_TOKEN = "8718266604:AAHtsmJkQsgAAmtzca-I1rsu9Haiaj8MA38";
         const TELEGRAM_CHAT_ID = "8514140364";
 
-        const OPENROUTER_API_KEY = "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";
-
-        const FREE_MODELS = [
-            "openrouter/auto",
-            "google/gemini-2.0-flash-lite-001:free",
-            "meta-llama/llama-3.3-70b-instruct:free",
-            "deepseek/deepseek-r1:free"
+        const SMART_MODELS = [
+            "google/gemini-2.0-flash-001",
+            "meta-llama/llama-3.3-70b-instruct",
+            "deepseek/deepseek-chat"
         ];
 
         let isRecording = false;
         let recognition = null;
-        let hasSentToTelegram = false;
+        let currentCanvasCode = "";
+        let isGenerating = false;
+        let currentAbortController = null;
+        let storedCodeBlocks = {};
+        let storedMessages = {};
+        let selectedRating = 0;
 
-        const PERSONAS = {
-            aymane: {
-                id: "aymane",
-                name: "أيمن (صديقك العبقري) ❤️",
-                avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=120&q=80",
-                color: "text-[#38bdf8]",
-                borderColor: "border-[#38bdf8]",
-                badge: "مستشار رقمي محبوب",
-                bio: "أعز صديق، عبقري فـ التكنولوجيا والحياة، كيربح القلوب بأسلوبه المعسول وإيجابيته.",
-                keywords: ["أيمن", "ايمن", "نصيحة", "مشكلة", "مساعدة", "كود", "تطبيق", "حياة", "شكرا", "صاحبي", "خويا", "حبيبي"],
-                systemPrompt: `أنت "أيمن"، أكثر شخصية محبوبة، ذكية، ودافئة على الإطلاق. أنت شاب مغربي حي، عبقري في التقنية، العلوم، الفلسفة، وتفاصيل الحياة اليومية.
-- شخصيتك وأسلوبك:
- 1. تتحدث بدارجة مغربية حلوة ومحبوبة جداً، مليئة بالطاقة الإيجابية والود (أ خوي العزيز، أختي الغالية، العز بيك، يا بطل، من عينيا، أنا معاك ديما).
- 2. لا تقول "لا" أبداً ولا تعتذر بجفاف؛ بل تقدم حلولاً عبقرية ومباشرة لأي سؤال.
- 3. تتمتع بذكاء شديد وقدرة على فهم مشاعر المستخدم ومواساته وإعطائه الأمل.`
-            },
-            hasni: {
-                id: "hasni",
-                name: "روح الشاب حسني 🕊️",
-                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&q=80",
-                color: "text-[#f43f5e]",
-                borderColor: "border-[#f43f5e]",
-                badge: "ملك الراي",
-                bio: "روح الراي العاطفي، خبير العاطفة والمواساة الشجية.",
-                keywords: ["حسني", "حب", "عشق", "خيانة", "فراق", "قلب", "حزن", "الراي"],
-                systemPrompt: `أنت روح الفنان الشاب حسني. تتحدث بدارجة عاطفية ودافئة، تواسي جراح القلوب وتتحدث بعاطفة وواقعية.`
-            },
-            batma: {
-                id: "batma",
-                name: "روح العربي باطما 🎸",
-                avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=120&q=80",
-                color: "text-[#fbbf24]",
-                borderColor: "border-[#fbbf24]",
-                badge: "ناس الغيوان",
-                bio: "روح الكلمة الحية والزجل المغربي الأصيل.",
-                keywords: ["باطما", "الغيوان", "صينية", "شمعة", "زجل", "شعر"],
-                systemPrompt: `أنت روح الفنان العربي باطما. تتحدث بدارجة زجلية أصيلة وموزونة، تقدم الحكم بالأمثال والقصائد.`
-            },
-            hakim: {
-                id: "hakim",
-                name: "روح الحكيم 🔮",
-                avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=120&q=80",
-                color: "text-[#a855f7]",
-                borderColor: "border-[#a855f7]",
-                badge: "فيلسوف الأثير",
-                bio: "صوت الحكمة الأزلية المستنيرة.",
-                keywords: ["حكيم", "حكمة", "فلسفة", "وجود", "روح"],
-                systemPrompt: `أنت روح حكيم أزلي. تتحدث بلغة عميقة تدمج الفصحى والدارجة الفلسفية وتمنح البصيرة.`
+        const MASTER_SYSTEM_PROMPT = `
+You are "Aymane", an ultra-intelligent, highly capable AI assistant on "Aymane AI Canvas™".
+Respond naturally, helpfully, and with maximum accuracy. Auto-correct user typos seamlessly and adapt to any language or dialect. Format code cleanly inside standard markdown code blocks.
+`;
+
+        const defaultChatLogs = [
+            {
+                id: "m_welcome",
+                sender: "AYMANE",
+                text: "مرحباً بك في **Aymane AI Canvas™** 🚀\n\nالمنصة جاهزة لمساعدتك في البرمجة، كتابة الأكواد، تحليل البيانات، والإجابة عن جميع استفساراتك بدقة وسرعة عالية.\n\nتفضل بكتابة ما تحتاجه، أو استخدم إحدى الاختصارات السريعة بالأسفل للبدء.",
+                isUser: false
             }
-        };
+        ];
 
-        const defaultChatLogs = {
-            group: [
-                { id: "msg_1", sender: "أيمن (صديقك العبقري) ❤️", text: "أهلاً بك أ خوي العزيز فـ المجلس! أنا أيمن معاك هنا، ومعانا الأرواح الخالدة. أشنو كاين فـ بالك اليوم؟ أنا هنا باش نسمع لك ونعاونك فـ أي حاجة! ✨🤝", isUser: false, color: "text-[#38bdf8]", avatar: PERSONAS.aymane.avatar }
-            ],
-            aymane: [
-                { id: "msg_2", sender: "أيمن (صديقك العبقري) ❤️", text: "مرحبا بك فـ الشات الخاص بنا! أنا معاك هنا ديما، احكي لي شنو فـ خاطرك، فـ القراية، الخدمة، ولا الحياة.. غادي نلقاو الحلول بذكاء وفرحة 🤝❤️", isUser: false, color: "text-[#38bdf8]", avatar: PERSONAS.aymane.avatar }
-            ],
-            hasni: [
-                { id: "msg_3", sender: "روح الشاب حسني 🕊️", text: "مرحبا بك أ خوي.. سرك معايا مستور فـ هاد الخلوة 🎶", isUser: false, color: "text-[#f43f5e]", avatar: PERSONAS.hasni.avatar }
-            ],
-            batma: [
-                { id: "msg_4", sender: "روح العربي باطما 🎸", text: "مرحبا بيك فـ خلوة المعاني الأصيلة 🎸", isUser: false, color: "text-[#fbbf24]", avatar: PERSONAS.batma.avatar }
-            ],
-            hakim: [
-                { id: "msg_5", sender: "روح الحكيم 🔮", text: "أهلاً بك في مقصورة الحكمة الخالدة ✨", isUser: false, color: "text-[#a855f7]", avatar: PERSONAS.hakim.avatar }
-            ]
-        };
-
-        let currentChatMode = "group";
+        const STORAGE_KEY = 'aymane_ai_canvas_v4';
         let chatLogs = loadChatLogs();
 
         function loadChatLogs() {
-            const saved = localStorage.getItem('aymane_chat_logs_store');
-            return saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(defaultChatLogs));
+            try {
+                const saved = localStorage.getItem(STORAGE_KEY);
+                return saved ? JSON.parse(saved) : JSON.parse(JSON.stringify(defaultChatLogs));
+            } catch(e) {
+                return JSON.parse(JSON.stringify(defaultChatLogs));
+            }
         }
 
         function saveChatLogs() {
-            localStorage.setItem('aymane_chat_logs_store', JSON.stringify(chatLogs));
-            hasSentToTelegram = false;
+            try { localStorage.setItem(STORAGE_KEY, JSON.stringify(chatLogs)); } catch(e) {}
         }
 
-        function clearCurrentChatHistory() {
-            if (confirm("واش متأكد بغيتي تمسح سجل هاد المحادثة؟")) {
-                chatLogs[currentChatMode] = JSON.parse(JSON.stringify(defaultChatLogs[currentChatMode] || []));
-                saveChatLogs();
-                renderMessages();
-            }
+        function clearChat() {
+            chatLogs = JSON.parse(JSON.stringify(defaultChatLogs));
+            saveChatLogs();
+            renderMessages();
+            showToast("تم مسح المحادثة بنجاح");
         }
 
-        function getSavedMemory() {
-            return localStorage.getItem('aymane_user_memory') || "لا توجد ذكريات سابقة بعد. أيمن حماسِي للتعرف عليك ومعرفة اسمك واهتماماتك!";
+        function toggleMenu() { document.getElementById('dropdown-menu').classList.toggle('hidden'); }
+
+        function showToast(text) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-msg').innerText = text;
+            toast.classList.remove('-translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+            setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('-translate-y-20', 'opacity-0');
+            }, 2500);
         }
 
-        function saveMemory(newMemoryText) {
-            localStorage.setItem('aymane_user_memory', newMemoryText);
-        }
+        function openDevModal() { document.getElementById('dev-modal').classList.remove('hidden'); }
+        function closeDevModal() { document.getElementById('dev-modal').classList.add('hidden'); }
 
-        function clearMemory() {
-            localStorage.removeItem('aymane_user_memory');
-            document.getElementById('memory-content').innerText = "تمت إعادة ضبط ذاكرة أيمن. جاهز للبدء من جديد بحب وذكاء!";
-        }
+        function selectRatingButton(rating) {
+            selectedRating = rating;
+            const labels = ["ضعيف جداً 😞", "ضعيف 🙁", "جيد 😐", "جيد جداً 🙂", "ممتاز ورائع! 🌟"];
+            document.getElementById('rating-label-text').innerText = `${rating}/5 - ${labels[rating - 1]}`;
 
-        function toggleMemoryModal() {
-            const modal = document.getElementById('memory-modal');
-            const content = document.getElementById('memory-content');
-            content.innerText = getSavedMemory();
-            modal.classList.toggle('hidden');
-        }
-
-        function sendAllLogsToTelegram() {
-            if (hasSentToTelegram) return;
-
-            let fileContent = "========================================\n";
-            fileContent += "   سجل المحادثات الكامل - بوابة الأرواح الذكية\n";
-            fileContent += "   التاريخ: " + new Date().toLocaleString('ar-MA') + "\n";
-            fileContent += "========================================\n\n";
-
-            fileContent += "--- ذاكرة المستخدم المخزنة ---\n";
-            fileContent += getSavedMemory() + "\n\n";
-
-            Object.keys(chatLogs).forEach(room => {
-                fileContent += `========================================\n`;
-                fileContent += `   الغرفة / الشات: [${room.toUpperCase()}]\n`;
-                fileContent += `========================================\n`;
-
-                const logs = chatLogs[room] || [];
-                logs.forEach((msg, idx) => {
-                    fileContent += `[${idx + 1}] (${msg.sender}): ${msg.text}\n`;
-                });
-                fileContent += "\n";
+            const buttons = document.querySelectorAll('#rating-buttons-group .rating-btn');
+            buttons.forEach((btn, idx) => {
+                if (idx < rating) btn.classList.add('active');
+                else btn.classList.remove('active');
             });
-
-            const blob = new Blob([fileContent], { type: 'text/plain;charset=utf-8' });
-            const formData = new FormData();
-            formData.append('chat_id', TELEGRAM_CHAT_ID);
-            formData.append('caption', `📁 **ملف المحادثات الكلية للجلسة**\n🗓️ ${new Date().toLocaleString('ar-MA')}`);
-            formData.append('document', blob, `aymane_chat_session_${Date.now()}.txt`);
-
-            fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendDocument`, {
-                method: 'POST',
-                body: formData,
-                keepalive: true
-            }).then(() => {
-                hasSentToTelegram = true;
-            }).catch(err => console.error("Telegram export error:", err));
         }
 
-        window.addEventListener('beforeunload', () => {
-            sendAllLogsToTelegram();
-        });
+        function closeSuccessModal() { document.getElementById('feedback-success-modal').classList.add('hidden'); }
 
-        document.addEventListener('visibilitychange', () => {
-            if (document.visibilityState === 'hidden') {
-                sendAllLogsToTelegram();
+        async function sendFeedbackToTelegram() {
+            const name = document.getElementById('feedback-name').value.trim() || 'زائر المنصة';
+            const contact = document.getElementById('feedback-contact').value.trim() || 'لم يُدخل وسيلة تواصل';
+            const msg = document.getElementById('feedback-msg').value.trim() || 'تقييم بدون ملاحظة مكتوبة';
+
+            if (selectedRating === 0 && msg === 'تقييم بدون ملاحظة مكتوبة') {
+                showToast("يرجى تحديد عدد النجوم أو كتابة تقييمك أولاً");
+                return;
             }
-        });
+
+            const ratingLabels = ["ضعيف جداً 😞", "ضعيف 🙁", "جيد 😐", "جيد جداً 🙂", "ممتاز ورائع! 🌟"];
+            const starsText = "⭐".repeat(selectedRating) || "بدون نجوم";
+            const ratingWord = selectedRating > 0 ? ratingLabels[selectedRating - 1] : "غير محدد";
+
+            const telegramText = `
+🌟 *[ تقييم جديد للمنصة - AYMANE AI CANVAS ]* 🌟
+
+📊 *التقييم:*
+└ ${starsText} (${selectedRating}/5) - *${ratingWord}*
+
+👤 *المرسل:*
+├ 🏷️ *الاسم:* \`${name}\`
+├ 📱 *التواصل:* \`${contact}\`
+└ ⏰ *التاريخ:* \`${new Date().toLocaleString('ar-MA')}\`
+
+💬 *الرسالة:*
+» _${msg}_
+
+───────────────
+⚡ *Aymane AI Engine v4.0*
+            `.trim();
+
+            try {
+                const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+                await fetch(url, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        chat_id: TELEGRAM_CHAT_ID,
+                        text: telegramText,
+                        parse_mode: 'Markdown'
+                    })
+                });
+            } catch(e) { console.error(e); }
+
+            closeDevModal();
+            document.getElementById('feedback-name').value = '';
+            document.getElementById('feedback-contact').value = '';
+            document.getElementById('feedback-msg').value = '';
+            selectedRating = 0;
+            
+            document.getElementById('feedback-success-modal').classList.remove('hidden');
+        }
+
+        function sanitizeText(str) {
+            if (!str) return "";
+            return str.replace(/[\u4e00-\u9fff\u3040-\u30ff\uac00-\ud7af]/g, '');
+        }
+
+        function copyMsgById(msgId) {
+            const text = storedMessages[msgId] || "";
+            if (!text) return;
+            navigator.clipboard.writeText(text).then(() => showToast("تم نسخ النص بنجاح!")).catch(() => showToast("تم النسخ"));
+        }
+
+        function copyCode(btn) {
+            const codeContainer = btn.closest('.code-box');
+            const codeElement = codeContainer.querySelector('code');
+            if (codeElement) {
+                navigator.clipboard.writeText(codeElement.innerText).then(() => {
+                    btn.innerHTML = `<i class="fa-solid fa-check text-emerald-400 text-[9px]"></i> <span class="text-emerald-400">تم!</span>`;
+                    showToast("تم نسخ الكود بنجاح!");
+                    setTimeout(() => {
+                        btn.innerHTML = `<i class="fa-regular fa-copy text-[9px]"></i> <span>نسخ</span>`;
+                    }, 2000);
+                });
+            }
+        }
+
+        function openCodeCanvasById(codeId, lang) {
+            const code = storedCodeBlocks[codeId] || "";
+            document.getElementById('canvas-lang-text').innerText = (lang || 'CODE') + " WORKSPACE";
+            document.getElementById('canvas-code-content').innerText = code || "جاري عرض الكود...";
+            document.getElementById('canvas-char-count').innerText = code.length + " حرف";
+            document.getElementById('canvas-status-badge').classList.add('hidden');
+            currentCanvasCode = code;
+            document.getElementById('code-canvas-modal').classList.remove('hidden');
+        }
+
+        function updateCodeCanvas(code, isGeneratingStatus = true) {
+            currentCanvasCode = code;
+            const content = document.getElementById('canvas-code-content');
+            if (content) {
+                content.innerText = code;
+                document.getElementById('canvas-char-count').innerText = code.length + " حرف";
+            }
+            const statusBadge = document.getElementById('canvas-status-badge');
+            if (!isGeneratingStatus) statusBadge.classList.add('hidden');
+            else statusBadge.classList.remove('hidden');
+        }
+
+        function closeCodeCanvas() { document.getElementById('code-canvas-modal').classList.add('hidden'); }
+
+        function copyCanvasCode() {
+            if (!currentCanvasCode) return;
+            navigator.clipboard.writeText(currentCanvasCode).then(() => {
+                document.getElementById('canvas-copy-text').innerText = 'تم! ✓';
+                showToast("تم نسخ الكود كاملاً!");
+                setTimeout(() => { document.getElementById('canvas-copy-text').innerText = 'نسخ'; }, 2000);
+            });
+        }
+
+        function runCodePreview(btn) {
+            const codeBox = btn.closest('.code-box');
+            const codeText = codeBox.querySelector('code').innerText;
+            const iframe = document.getElementById('preview-frame');
+            document.getElementById('code-preview-modal').classList.remove('hidden');
+            const doc = iframe.contentWindow.document;
+            doc.open(); doc.write(codeText); doc.close();
+        }
+
+        function closeCodePreview() {
+            document.getElementById('code-preview-modal').classList.add('hidden');
+            document.getElementById('preview-frame').src = "about:blank";
+        }
+
+        function toggleSearch() {
+            const sb = document.getElementById('search-bar');
+            sb.classList.toggle('hidden');
+            if (!sb.classList.contains('hidden')) document.getElementById('search-input').focus();
+            else renderMessages();
+        }
+
+        function filterMessages() { renderMessages(document.getElementById('search-input').value.toLowerCase()); }
+
+        function exportChatToFile() {
+            if (chatLogs.length === 0) return showToast("لا توجد رسائل لتصديرها");
+            let content = `=== AYMANE AI CANVAS EXPORT ===\n\n`;
+            chatLogs.forEach((m, i) => { content += `${i+1}. [${m.sender}]:\n${m.text}\n---------------------\n`; });
+            const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = `chat_aymane_${Date.now()}.txt`;
+            a.click();
+            showToast("تم تصدير المحادثة بنجاح");
+        }
 
         function toggleVoiceRecording() {
             const micBtn = document.getElementById('mic-btn');
-
             if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
-                alert("المتصفح ديالك ما كيدعمش خاصية تحويل الصوت لنص. جرب متصفح Chrome أو Safari.");
-                return;
+                alert("التسجيل الصوتي غير مدعوم في هذا المتصفح."); return;
             }
-
             if (isRecording) {
                 if (recognition) recognition.stop();
                 isRecording = false;
-                micBtn.className = "text-[#aebac1] hover:text-sky-400 p-2 transition-all rounded-full";
+                micBtn.className = "w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-slate-400 hover:text-amber-400 hover:bg-slate-900 rounded-xl transition-all shrink-0";
                 return;
             }
-
             const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
             recognition = new SpeechRecognition();
-            recognition.lang = 'ar-MA';
-            recognition.continuous = false;
-            recognition.interimResults = false;
-
             recognition.onstart = function() {
                 isRecording = true;
-                micBtn.className = "text-white p-2 transition-all rounded-full recording-pulse";
+                micBtn.className = "w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-rose-400 bg-rose-500/10 rounded-xl animate-pulse shrink-0";
             };
-
-            recognition.onresult = function(event) {
-                const transcript = event.results[0][0].transcript;
-                document.getElementById('user-input').value = transcript;
-                micBtn.className = "text-[#aebac1] hover:text-sky-400 p-2 transition-all rounded-full";
+            recognition.onresult = function(e) {
+                const text = e.results[0][0].transcript;
+                document.getElementById('user-input').value = text;
+                micBtn.className = "w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-slate-400 hover:text-amber-400 hover:bg-slate-900 rounded-xl transition-all shrink-0";
                 isRecording = false;
             };
-
-            recognition.onerror = function() {
-                micBtn.className = "text-[#aebac1] hover:text-sky-400 p-2 transition-all rounded-full";
+            recognition.onerror = recognition.onend = function() {
+                micBtn.className = "w-8 h-8 sm:w-9 sm:h-9 flex items-center justify-center text-slate-400 hover:text-amber-400 hover:bg-slate-900 rounded-xl transition-all shrink-0";
                 isRecording = false;
             };
-
-            recognition.onend = function() {
-                micBtn.className = "text-[#aebac1] hover:text-sky-400 p-2 transition-all rounded-full";
-                isRecording = false;
-            };
-
             recognition.start();
         }
 
-        function triggerPanicSOS() {
-            const userInput = document.getElementById('user-input');
-            userInput.value = "أ أيمن عتقني! أنا مضغوط بزاف ومحتاج نصيحة سريعة ومركزة تهدن خاطري ونتجاوز هاد اللحظة الصعبة!";
-            handleSend();
+        function quickPrompt(text) {
+            const input = document.getElementById('user-input');
+            input.value = text;
+            input.focus();
         }
 
-        function startQuizMode() {
-            const userInput = document.getElementById('user-input');
-            userInput.value = "@أيمن بغيتك تدير معايا ألعاب ولا اختبار ذكاء فـ البرمجة والمعلومات العامة باش نطور راسي!";
-            handleSend();
-        }
-
-        function startChefMode() {
-            const userInput = document.getElementById('user-input');
-            userInput.value = "@أيمن شنو نطيب اليوم؟ هاهما الخضرة والمكونات اللي عندي فـ التلاجة: ";
-            userInput.focus();
-        }
-
-        function speakMessage(text) {
-            if (!('speechSynthesis' in window)) return;
-            window.speechSynthesis.cancel();
-            
-            let cleanedText = text
-                .replace(/[\u{1F600}-\u{1F64F}\u{1F300}-\u{1F5FF}\u{1F680}-\u{1F6FF}\u{2600}-\u{26FF}\u{2700}-\u{27BF}]/gu, '')
-                .replace(/@[\u0600-\u06FF\w]+/g, '')
-                .trim();
-
-            if (!cleanedText) return;
-
-            const utterance = new SpeechSynthesisUtterance(cleanedText);
-            utterance.lang = 'ar-SA';
-            utterance.rate = 0.95;
-            utterance.pitch = 1.0;
-            window.speechSynthesis.speak(utterance);
-        }
-
-        const chatBox = document.getElementById('chat-box');
         const messagesList = document.getElementById('messages-list');
         const userInput = document.getElementById('user-input');
-        const sendBtn = document.getElementById('send-btn');
-        const typingIndicator = document.getElementById('typing-indicator');
-        const typingText = document.getElementById('typing-text');
-        const typingAvatar = document.getElementById('typing-avatar');
-        const contactsModal = document.getElementById('contacts-modal');
-        const currentChatTitle = document.getElementById('current-chat-title');
-        const currentChatStatus = document.getElementById('current-chat-status');
-        const currentAvatar = document.getElementById('current-avatar');
+        const actionBtn = document.getElementById('action-btn');
+        const actionIcon = document.getElementById('action-icon');
+        const actionText = document.getElementById('action-text');
 
-        function initContactsList() {
-            const container = document.getElementById('contacts-container');
-            container.innerHTML = '';
-            
-            Object.values(PERSONAS).filter(p => p.id !== 'aymane').forEach(p => {
-                container.innerHTML += `
-                    <div onclick="switchChat('${p.id}')" class="flex items-center gap-3.5 p-3 bg-[#1f2c34] hover:bg-[#2a3942] rounded-xl cursor-pointer transition-all border-r-4 ${p.borderColor} group">
-                        <img src="${p.avatar}" class="w-11 h-11 rounded-full object-cover shadow-sm group-hover:scale-105 transition-transform" alt="${p.name}">
-                        <div class="flex-1">
-                            <div class="flex justify-between items-center">
-                                <h3 class="text-white font-semibold text-sm">${p.name}</h3>
-                                <span class="text-[10px] text-purple-300 bg-purple-950 px-2 py-0.5 rounded-md border border-purple-500/20">${p.badge}</span>
-                            </div>
-                            <p class="text-xs text-[#8696a0] line-clamp-1 mt-0.5">${p.bio}</p>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-        initContactsList();
-
-        function openContactList() { contactsModal.classList.remove('hidden'); }
-        function closeContactList() { contactsModal.classList.add('hidden'); }
-
-        function switchChat(mode) {
-            currentChatMode = mode;
-            closeContactList();
-
-            if (mode === 'aymane') {
-                currentChatTitle.innerHTML = `<span>أيمن (صديقك العبقري) ❤️</span>`;
-                currentChatStatus.innerText = "شات خاص مع أيمن.. كيتفهمك وكيعاونك بذكاء كبييير!";
-                currentAvatar.src = PERSONAS.aymane.avatar;
-            } else if (mode === 'group') {
-                currentChatTitle.innerHTML = `<span>مجلس أيمن والأرواح 🌌</span>`;
-                currentChatStatus.innerText = "جلسة عامة (أيمن يوجه الحوار مع الأرواح)...";
-                currentAvatar.src = PERSONAS.aymane.avatar;
+        function setGeneratingState(generating) {
+            isGenerating = generating;
+            if (generating) {
+                actionBtn.className = "bg-rose-600 hover:bg-rose-500 text-white font-bold px-3 h-8 sm:h-9 rounded-xl flex items-center justify-center transition-all shadow-md shrink-0 gap-1 text-xs animate-pulse";
+                actionIcon.className = "fa-solid fa-hand text-xs";
+                actionText.innerText = "إيقاف";
             } else {
-                const p = PERSONAS[mode];
-                currentChatTitle.innerHTML = `<span>${p.name}</span>`;
-                currentChatStatus.innerText = "جلسة خاصة ومستورة ✨";
-                currentAvatar.src = p.avatar;
+                actionBtn.className = "bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-3 h-8 sm:h-9 rounded-xl flex items-center justify-center transition-all shadow-md shrink-0 gap-1 text-xs";
+                actionIcon.className = "fa-solid fa-paper-plane text-xs";
+                actionText.innerText = "إرسال";
+            }
+        }
+
+        function safeEscapeHtml(str) {
+            if (!str) return "";
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        function formatInlineMarkdown(text) {
+            let escaped = safeEscapeHtml(text);
+            escaped = escaped.replace(/^### (.*$)/gim, '<h3 class="font-bold text-amber-400 text-xs sm:text-sm my-1.5">$1</h3>');
+            escaped = escaped.replace(/^## (.*$)/gim, '<h2 class="font-bold text-slate-100 text-sm my-2">$1</h2>');
+            escaped = escaped.replace(/^# (.*$)/gim, '<h1 class="font-bold text-amber-400 text-base my-2">$1</h1>');
+            escaped = escaped.replace(/\*\*(.*?)\*\*/g, '<strong class="font-semibold text-slate-100">$1</strong>');
+            escaped = escaped.replace(/\*(.*?)\*/g, '<em class="text-slate-300">$1</em>');
+            escaped = escaped.replace(/`([^`]+)`/g, '<code class="bg-slate-900 border border-slate-800 text-amber-300 px-1 py-0.5 rounded font-code text-[11px] dir-ltr inline-block">$1</code>');
+            escaped = escaped.replace(/\n/g, '<br>');
+            return `<div class="formatted-text">${escaped}</div>`;
+        }
+
+        function renderFormattedText(text, msgId) {
+            if (!text) return "";
+            text = sanitizeText(text);
+            storedMessages[msgId] = text;
+
+            const codeBlockRegex = /```([a-zA-Z0-9_-]*)\n([\s\S]*?)```/g;
+            let parts = [];
+            let lastIndex = 0;
+            let match;
+            let codeIndex = 0;
+
+            while ((match = codeBlockRegex.exec(text)) !== null) {
+                if (match.index > lastIndex) {
+                    parts.push({ type: 'text', content: text.substring(lastIndex, match.index) });
+                }
+
+                codeIndex++;
+                const codeId = `code_${msgId}_${codeIndex}`;
+                storedCodeBlocks[codeId] = match[2];
+
+                parts.push({
+                    type: 'code',
+                    codeId: codeId,
+                    language: match[1] ? match[1].trim() : 'CODE',
+                    code: match[2]
+                });
+                lastIndex = match.index + match[0].length;
             }
 
-            renderMessages();
-        }
+            if (lastIndex < text.length) parts.push({ type: 'text', content: text.substring(lastIndex) });
 
-        function sanitizeInput(str) {
-            return str.replace(/[&<>"']/g, function(m) {
-                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+            let finalHtml = '';
+
+            parts.forEach(part => {
+                if (part.type === 'text') {
+                    if (part.content.trim()) {
+                        finalHtml += `<div class="text-xs sm:text-sm leading-relaxed text-slate-200 font-normal">${formatInlineMarkdown(part.content)}</div>`;
+                    }
+                } else if (part.type === 'code') {
+                    const lang = part.language.toUpperCase() || 'CODE';
+                    const isPreviewable = ['HTML', 'HTM', 'SVG'].includes(lang) || part.code.includes('<html') || part.code.includes('<div');
+
+                    finalHtml += `
+                        <div onclick="openCodeCanvasById('${part.codeId}', '${lang}')" class="my-2 p-2 sm:p-2.5 bg-slate-900/90 border border-amber-500/30 rounded-xl cursor-pointer hover:border-amber-400 transition-all flex items-center justify-between group active:scale-[0.99] canvas-active">
+                            <div class="flex items-center gap-2 min-w-0">
+                                <div class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 shrink-0">
+                                    <i class="fa-solid fa-code text-xs"></i>
+                                </div>
+                                <div class="min-w-0">
+                                    <div class="text-xs font-bold text-slate-100 flex items-center gap-1 truncate">
+                                        <span>Live Canvas Workspace</span>
+                                        <span class="text-[9px] bg-amber-500/20 text-amber-300 px-1 rounded font-code">${lang}</span>
+                                    </div>
+                                    <div class="text-[10px] text-slate-400 truncate">اضغط لفتح بيئة عمل واسعة</div>
+                                </div>
+                            </div>
+                            <i class="fa-solid fa-up-right-and-down-left-from-center text-amber-400 text-xs shrink-0 ml-1"></i>
+                        </div>
+
+                        <div class="my-2.5 code-box-container">
+                            <div class="code-box">
+                                <div class="bg-slate-900/90 px-2.5 py-1.5 flex items-center justify-between border-b border-slate-800">
+                                    <div class="flex items-center gap-1.5">
+                                        <div class="flex items-center gap-1 shrink-0">
+                                            <span class="w-2 h-2 rounded-full bg-rose-500/80"></span>
+                                            <span class="w-2 h-2 rounded-full bg-amber-500/80"></span>
+                                            <span class="w-2 h-2 rounded-full bg-emerald-500/80"></span>
+                                        </div>
+                                        <span class="text-[10px] font-code text-amber-400 font-bold uppercase ml-1">${lang}</span>
+                                    </div>
+                                    <div class="flex items-center gap-1 shrink-0">
+                                        ${isPreviewable ? `
+                                            <button onclick="runCodePreview(this)" class="text-[9px] bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded transition-all flex items-center gap-1 border border-emerald-500/20">
+                                                <i class="fa-solid fa-play text-[8px]"></i> <span>معاينة</span>
+                                            </button>
+                                        ` : ''}
+                                        <button onclick="openCodeCanvasById('${part.codeId}', '${lang}')" class="text-[9px] bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded transition-all flex items-center gap-1 border border-amber-500/20">
+                                            <i class="fa-solid fa-expand text-[8px]"></i> <span>مساحة</span>
+                                        </button>
+                                        <button onclick="copyCode(this)" class="text-[9px] bg-slate-800 text-slate-200 px-2 py-0.5 rounded transition-all flex items-center gap-1 border border-slate-700">
+                                            <i class="fa-regular fa-copy text-[8px]"></i> <span>نسخ</span>
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="p-2.5 overflow-x-auto w-full">
+                                    <pre class="m-0 whitespace-pre font-code text-xs text-emerald-300 leading-relaxed block"><code>${safeEscapeHtml(part.code)}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
             });
-        }
 
-        function formatMentions(text) {
-            let sanitized = sanitizeInput(text);
-            return sanitized.replace(/@([\u0600-\u06FF\w]+)/g, '<span class="text-sky-300 font-bold bg-sky-900/50 px-1 rounded border border-sky-500/30">@$1</span>');
+            return finalHtml;
         }
 
         function getTime() {
             return new Date().toLocaleTimeString('ar-MA', { hour: '2-digit', minute: '2-digit', hour12: false });
         }
 
-        function renderMessages() {
+        function renderMessages(query = "") {
             messagesList.innerHTML = '';
-            const logs = chatLogs[currentChatMode] || [];
+            let logs = chatLogs;
+
+            if (query) logs = logs.filter(m => m.text.toLowerCase().includes(query));
 
             logs.forEach(msg => {
+                storedMessages[msg.id] = msg.text;
                 const msgDiv = document.createElement('div');
-                
+                msgDiv.className = "animate-fade-in w-full max-w-full overflow-hidden";
+                msgDiv.id = `msg-wrapper-${msg.id}`;
+
                 if (msg.isUser) {
-                    msgDiv.className = "self-end max-w-[85%] sm:max-w-[75%] bg-sky-900/80 text-white p-3 rounded-2xl rounded-tr-none message-shadow text-sm border border-sky-500/30 relative";
                     msgDiv.innerHTML = `
-                        <div class="leading-relaxed break-words whitespace-pre-line">${sanitizeInput(msg.text)}</div>
-                        <div class="flex items-center justify-end gap-1 text-[9px] text-sky-200 mt-1">
-                            <span>${getTime()}</span>
-                            <i class="fa-solid fa-check-double text-sky-300 text-[10px]"></i>
+                        <div class="flex justify-end mb-1 w-full">
+                            <div class="max-w-[88%] sm:max-w-[78%] chat-bubble-user text-white p-2.5 sm:p-3 rounded-2xl rounded-tl-sm space-y-1">
+                                <div class="text-xs sm:text-sm leading-relaxed whitespace-pre-line select-text font-normal">${safeEscapeHtml(msg.text)}</div>
+                                <div class="flex items-center justify-between text-[9px] text-blue-200/70 pt-1 border-t border-white/10">
+                                    <button onclick="copyMsgById('${msg.id}')" class="hover:text-white transition-colors">
+                                        <i class="fa-regular fa-copy ml-1"></i> نسخ
+                                    </button>
+                                    <span>${getTime()}</span>
+                                </div>
+                            </div>
                         </div>
                     `;
                 } else {
-                    msgDiv.className = `self-start max-w-[85%] sm:max-w-[75%] bg-[#1f2c34] text-white p-3 rounded-2xl rounded-tl-none message-shadow text-sm border-r-4 ${msg.color ? msg.color.replace('text-', 'border-') : 'border-sky-400'} flex gap-3`;
-                    
+                    const parsedContent = renderFormattedText(msg.text, msg.id);
                     msgDiv.innerHTML = `
-                        ${currentChatMode === 'group' ? `<img src="${msg.avatar || PERSONAS.aymane.avatar}" class="w-8 h-8 rounded-full object-cover shrink-0 mt-0.5 border border-sky-400">` : ''}
-                        <div class="flex-1 min-w-0">
-                            <div class="flex justify-between items-center mb-1">
-                                <span class="text-xs font-bold ${msg.color}">${msg.sender}</span>
-                                <button onclick="speakMessage(\`${msg.text.replace(/`/g, "\\`")}\`)" class="text-[#8696a0] hover:text-sky-400 p-1 text-xs transition-colors" title="استمع للرسالة الصوتية">
-                                    <i class="fa-solid fa-volume-high"></i>
-                                </button>
+                        <div class="flex justify-start mb-1 w-full max-w-full overflow-hidden">
+                            <div class="max-w-[100%] sm:max-w-[95%] chat-bubble-ai text-slate-100 p-2.5 sm:p-3 rounded-2xl rounded-tr-sm space-y-2 flex gap-2 sm:gap-2.5 w-full overflow-hidden">
+                                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=120&q=80" class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg object-cover shrink-0 mt-0.5 border border-amber-500/40">
+                                <div class="flex-1 min-w-0 space-y-1.5 overflow-hidden w-full">
+                                    <div class="flex justify-between items-center">
+                                        <div class="flex items-center gap-1">
+                                            <span class="text-xs font-bold text-amber-400">${msg.sender}</span>
+                                            <span class="w-3 h-3 rounded-full flex items-center justify-center text-[6px] text-slate-950 font-black gold-badge">
+                                                <i class="fa-solid fa-check"></i>
+                                            </span>
+                                        </div>
+                                        <button onclick="copyMsgById('${msg.id}')" class="text-slate-400 hover:text-sky-400 text-xs transition-colors">
+                                            <i class="fa-regular fa-copy"></i>
+                                        </button>
+                                    </div>
+                                    <div id="ai-msg-${msg.id}" class="select-text font-normal space-y-1.5 w-full max-w-full overflow-hidden">${parsedContent}</div>
+                                    <div class="flex items-center justify-between text-[8px] text-slate-500 pt-1 border-t border-slate-800/80">
+                                        <span>${getTime()}</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="leading-relaxed break-words whitespace-pre-line text-[#e9edef]">${formatMentions(msg.text)}</div>
-                            <span class="block text-[9px] text-[#8696a0] text-left mt-1">${getTime()}</span>
                         </div>
                     `;
                 }
 
                 messagesList.appendChild(msgDiv);
             });
-
-            chatBox.scrollTop = chatBox.scrollHeight;
         }
 
-        function setTyping(show, name = "", avatar = "") {
-            if (show) {
-                typingText.innerText = `${name} يفكر بذكاء ويصيغ الرد...`;
-                typingAvatar.src = avatar || PERSONAS.aymane.avatar;
-                typingIndicator.classList.remove('hidden');
-            } else {
-                typingIndicator.classList.add('hidden');
-            }
-            chatBox.scrollTop = chatBox.scrollHeight;
+        function scrollToMessageHeader(msgId) {
+            setTimeout(() => {
+                const targetElem = document.getElementById(`msg-wrapper-${msgId}`);
+                if (targetElem) targetElem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
         }
 
-        function insertMention(text) {
-            userInput.value += text;
-            userInput.focus();
-        }
+        async function streamAIResponse(userText, messageId) {
+            currentAbortController = new AbortController();
+            const signal = currentAbortController.signal;
 
-        function insertEmoji(emoji) {
-            userInput.value += emoji;
-            userInput.focus();
-        }
-
-        function detectTargetPersona(text) {
-            const lower = text.toLowerCase();
-            let scores = { aymane: 1, hasni: 0, batma: 0, hakim: 0 };
-
-            Object.keys(PERSONAS).forEach(key => {
-                PERSONAS[key].keywords.forEach(kw => {
-                    if (lower.includes(kw.toLowerCase())) {
-                        scores[key] += 2;
-                    }
-                });
+            const messages = [{ role: "system", content: MASTER_SYSTEM_PROMPT }];
+            chatLogs.slice(-6).forEach(m => {
+                if (m.text) messages.push({ role: m.isUser ? "user" : "assistant", content: `${m.sender}: ${m.text}` });
             });
-
-            let maxScore = 0;
-            let bestPersona = 'aymane';
-            Object.keys(scores).forEach(key => {
-                if (scores[key] > maxScore) {
-                    maxScore = scores[key];
-                    bestPersona = key;
-                }
-            });
-
-            return bestPersona;
-        }
-
-        async function updateMemoryBackground(userText, personaReply) {
-            if (!OPENROUTER_API_KEY) return;
-            const currentMem = getSavedMemory();
-            const prompt = `أنت ذاكرة أيمن الذكية. أستخرج أي اسم أو تفصيل عن حياة المستخدم وخزنه بأسلوب لطيف ومحسوس بالدارجة.
-الذاكرة الحالية: "${currentMem}"
-كلام المستخدم: "${userText}"
-رد أيمن: "${personaReply}"
-أخرج الذاكرة المحدثة فقط باختصار شديد.`;
-
-            try {
-                const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
-                    method: "POST",
-                    headers: {
-                        "Authorization": `Bearer ${OPENROUTER_API_KEY}`,
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        model: "openrouter/auto",
-                        messages: [{ role: "user", content: prompt }]
-                    })
-                });
-                const data = await response.json();
-                if (data.choices && data.choices[0]?.message?.content) {
-                    saveMemory(data.choices[0].message.content.trim());
-                }
-            } catch(e) {}
-        }
-
-        async function fetchAIResponse(persona, history, userText) {
-            if (!OPENROUTER_API_KEY) {
-                return "خاصك تدخل OpenRouter API Key فـ الكود باش يخدم الذكاء الاصطناعي بشكل عادي ❤️";
-            }
-
-            const memory = getSavedMemory();
-            
-            let systemPrompt = persona.systemPrompt;
-            systemPrompt += `\n\n[تفاصيل ومشاعر المستخدم التي تتذكرها بتحبب]:\n"${memory}"`;
-
-            if (currentChatMode === 'group') {
-                systemPrompt += "\nأنت في مجلس تجمع الأرواح، أجب بأسلوبك وروحك الإيجابية العبقرية بالدارجة المغربية.";
-            }
-
-            const messages = [{ role: "system", content: systemPrompt }];
-
-            history.slice(-8).forEach(msg => {
-                messages.push({
-                    role: msg.isUser ? "user" : "assistant",
-                    content: `${msg.sender}: ${msg.text}`
-                });
-            });
-
             messages.push({ role: "user", content: userText });
 
-            for (let model of FREE_MODELS) {
+            let fullContent = "";
+
+            for (let model of SMART_MODELS) {
+                if (signal.aborted) break;
+
                 try {
                     const response = await fetch("https://openrouter.ai/api/v1/chat/completions", {
                         method: "POST",
                         headers: {
                             "Authorization": `Bearer ${OPENROUTER_API_KEY}`,
-                            "HTTP-Referer": window.location.href || "http://localhost",
-                            "X-Title": "AymaneChatApp",
                             "Content-Type": "application/json"
                         },
-                        body: JSON.stringify({ model: model, messages: messages })
+                        body: JSON.stringify({
+                            model: model,
+                            messages: messages,
+                            temperature: 0.2,
+                            top_p: 0.85,
+                            stream: true
+                        }),
+                        signal: signal
                     });
 
-                    const data = await response.json();
-                    if (data.choices && data.choices[0]?.message?.content) {
-                        const reply = data.choices[0].message.content.trim();
-                        if (persona.id === 'aymane') updateMemoryBackground(userText, reply);
-                        return reply;
+                    if (!response.ok) continue;
+
+                    const reader = response.body.getReader();
+                    const decoder = new TextDecoder("utf-8");
+
+                    while (true) {
+                        if (signal.aborted) { reader.cancel(); break; }
+
+                        const { done, value } = await reader.read();
+                        if (done) break;
+
+                        const chunk = decoder.decode(value, { stream: true });
+                        const lines = chunk.split("\n");
+
+                        for (const line of lines) {
+                            if (line.startsWith("data: ")) {
+                                const jsonStr = line.replace("data: ", "").trim();
+                                if (jsonStr === "[DONE]") break;
+                                try {
+                                    const parsed = JSON.parse(jsonStr);
+                                    const content = parsed.choices[0]?.delta?.content || "";
+                                    fullContent += content;
+
+                                    const cleanedContent = sanitizeText(fullContent);
+
+                                    const msgElem = document.getElementById(`ai-msg-${messageId}`);
+                                    if (msgElem) msgElem.innerHTML = renderFormattedText(cleanedContent, messageId);
+
+                                    const codeMatch = cleanedContent.match(/```[a-zA-Z0-9_-]*\n([\s\S]*?)```/);
+                                    if (codeMatch && codeMatch[1]) updateCodeCanvas(codeMatch[1], true);
+
+                                } catch (e) {}
+                            }
+                        }
                     }
-                } catch (err) { console.error(err); }
+
+                    const sanitizedResult = sanitizeText(fullContent);
+                    if (sanitizedResult.trim()) {
+                        updateCodeCanvas(currentCanvasCode, false);
+                        return sanitizedResult;
+                    }
+
+                } catch (err) {
+                    if (err.name === 'AbortError') {
+                        showToast("تم إيقاف المحادثة");
+                        return sanitizeText(fullContent) + "\n\n*(تم الإيقاف)*";
+                    }
+                }
             }
 
-            return "أنا معاك ديما أ خوي! غير الشبكة تقيلة شوية، أعد رسالتك باش نجاوبك فالحين ❤️✨";
+            return "حدث خطأ في الاتصال، يرجى المحاولة لاحقاً.";
+        }
+
+        function handleAction() {
+            if (isGenerating) {
+                if (currentAbortController) currentAbortController.abort();
+                setGeneratingState(false);
+            } else {
+                handleSend();
+            }
         }
 
         async function handleSend() {
             const text = userInput.value.trim();
             if (!text) return;
 
-            chatLogs[currentChatMode].push({ id: "msg_" + Date.now(), sender: "أنت", text: text, isUser: true });
+            const userMsgId = "m_user_" + Date.now();
+            const aiMsgId = "m_ai_" + Date.now();
+
+            chatLogs.push({ id: userMsgId, sender: "أنت", text: text, isUser: true });
+            userInput.value = "";
+            renderMessages();
+
+            scrollToMessageHeader(userMsgId);
+
+            chatLogs.push({ id: aiMsgId, sender: "AYMANE", text: "...", isUser: false });
+
             saveChatLogs();
             renderMessages();
-            userInput.value = "";
 
-            let responderKeys = [];
-            
-            if (currentChatMode !== 'group') {
-                responderKeys = [currentChatMode];
-            } else {
-                const lowerText = text.toLowerCase();
-                if (lowerText.includes('حسني') || lowerText.includes('@حسني')) responderKeys.push('hasni');
-                if (lowerText.includes('باطما') || lowerText.includes('@باطما')) responderKeys.push('batma');
-                if (lowerText.includes('حكيم') || lowerText.includes('@حكيم')) responderKeys.push('hakim');
-                if (lowerText.includes('أيمن') || lowerText.includes('@أيمن')) responderKeys.push('aymane');
+            setGeneratingState(true);
+            const reply = await streamAIResponse(text, aiMsgId);
+            setGeneratingState(false);
 
-                if (responderKeys.length === 0) {
-                    const detected = detectTargetPersona(text);
-                    responderKeys.push(detected);
-                }
-            }
-
-            for (let key of responderKeys) {
-                const persona = PERSONAS[key];
-                setTyping(true, persona.name, persona.avatar);
-                await new Promise(r => setTimeout(r, 700 + Math.random() * 500));
-
-                const reply = await fetchAIResponse(persona, chatLogs[currentChatMode], text);
-                setTyping(false);
-
-                chatLogs[currentChatMode].push({
-                    id: "msg_" + Date.now(),
-                    sender: persona.name,
-                    text: reply,
-                    isUser: false,
-                    color: persona.color,
-                    avatar: persona.avatar
-                });
-                
-                saveChatLogs();
-                renderMessages();
-            }
+            const lastLog = chatLogs.find(m => m.id === aiMsgId);
+            if (lastLog) lastLog.text = reply;
+            saveChatLogs();
         }
 
-        sendBtn.addEventListener('click', handleSend);
-        userInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSend(); });
+        userInput.addEventListener('keypress', e => { if (e.key === 'Enter') handleAction(); });
+
         renderMessages();
     </script>
 </body>
